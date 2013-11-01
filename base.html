@@ -1,0 +1,35 @@
+{% extends "site/base.html" %}
+{% load markup %}
+{% load utils %}
+
+{% block nav %}
+    <ul>
+    {% for i in portfolio.pages_navigation %}
+        <li><a class="{{ i.slug_name }} n_{{ forloop.counter }}{% ifequal page i %} active{% endifequal %}{% ifequal page.pages.0 i %} active{% endifequal %}{% if forloop.first %} first{% endif %}" href="{{ i.url }}">{{ i.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% endblock %}
+
+{% block content %}
+<div class="span-15 main">
+    {% block main %}
+    {% for i in page.files %}
+    {{ i|render_thumb:"570x0" }}
+    {% endfor %}
+    <h2>{{ page.name }}</h2>
+    {{ page.dic.description|textile }}
+    {% endblock %}
+</div>
+<div class="right-bar prepend-1 span-5 last">
+    {% block rightbar %}
+    {% endblock %}
+</div>
+{% endblock %}
+
+{% block footer %}
+	<div id="footer-powered">
+		All rights reserved <a href="{{ portfolio.url }}" title="{{ portfolio.dic.moto }}">{{ portfolio.title }}</a>
+		// Designed by <a href="http://essyevian.tumblr.com/">Essy Evian</a>
+		// <a title="{{ site_excerpt }}" href="http://{{ site.domain }}">{{ site.name }}</a> {{ site_excerpt }}
+	</div>
+{% endblock %}

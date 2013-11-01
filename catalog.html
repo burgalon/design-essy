@@ -1,0 +1,20 @@
+{% extends pack.base.template %}
+{% load markup %}
+{% load utils %}
+{% block main %}
+	<h2>{% firstof page.dic.sub_title page.name %}</h2>
+    <div class="span-16">
+		{% if page.dic.description %}{{ page.dic.description|textile }}{% endif %}
+        {% for i in items %}
+        <div class="catalog-item c{{forloop.counter}}{% if forloop.counter|divisibleby:3 %} last{% endif %}">
+                <h3><a class="item-title" title="{{ i.dic.sub_title|escape }}" href="{{i.url}}">{{i.name }}</a></h3>
+                <div class="item-time">{% firstof i.dic.time i.time|date:"D d M Y" %}</div>
+                <div class="item-description">
+                    {% if i.file %}<a class="item-thumb" title="{{ i.dic.sub_title|escape }}" href="{{i.url}}">{{ i|render_thumb:"180x0" }}</a>{% endif %}
+                    {{ i.dic.description|textile|truncatewords_html:40 }}
+                </div>
+                <a class="read-more" href="{{ i.url }}">Read More</a>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends pack.base.template %}
+{% load markup %}
+{% load utils %}
+{% block main %}
+	<p>{{ page.dic.description }}<p>
+    <p>{{  portfolio.dic.email|obfuscate }}</p>
+    {{ page.dic.sign_off|textile }}
+{% endblock %}

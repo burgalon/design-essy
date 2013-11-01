@@ -1,0 +1,11 @@
+{% extends pack.base.template %}
+{% load utils %}
+{% load markup %}
+{% block content %}
+    {% block main %}
+    {% for i in page.files %}
+    {{ i|render_thumb:"650x0" }}
+    {% endfor %}
+    {{ page.dic.description|textile }}
+    {% endblock %}
+{% endblock %}

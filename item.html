@@ -1,0 +1,17 @@
+{% extends pack.base.template %}
+{% comment %}page.dic.description{% endcomment %}
+{% load markup %}
+{% load utils %}
+{% block rightbar %}
+<ul class="catalog horizontal">
+	{% for i in pages.0.pages %}
+	<li class="catalog-item">
+			<a class="item-thumb" href="{{i.url}}">{{ i|render_thumb:"50x50" }}</a>
+			<a class="item-title" href="{{i.url}}">{{i.name }}</a>
+			{% if i.dic.sub_title %}
+			<a class="item-sub-title" href="{{ i.url }}">{{ i.dic.sub_title|textile }}</a>
+			{% endif %}
+	</li>
+	{% endfor %}
+</ul>
+{% endblock %}

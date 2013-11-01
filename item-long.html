@@ -1,0 +1,11 @@
+{% extends pack.item.template %}
+{% comment %}page.dic.description{% endcomment %}
+{% load markup %}
+{% load utils %}
+{% block main %}
+{% for i in page.files %}
+{{ i|render_thumb:"500x0" }}
+{% endfor %}
+<h2>{{ page.name }}</h2>
+{{ page.dic.description|textile }}
+{% endblock %}
